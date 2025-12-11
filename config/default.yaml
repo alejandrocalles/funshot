@@ -1,0 +1,32 @@
+random_seed: 0
+output_dir: outputs
+
+
+model:
+  id: Qwen/Qwen2.5-Coder-0.5B-Instruct
+
+prompt:
+  system_prompt: You are a helpful coding assistant.
+  function_name: f
+  table_format:
+    num_rows: 7
+    row_format: "f({}, {}) = {}"
+    header: null
+  user_prompt: |
+    You are a Python coding assistant. I will provide a table of inputs (x, y) and outputs.
+    Your job is to find the mathematical relationship between the inputs and the outputs,
+    and write the respective python function.
+
+    Here are the function values:
+    {}
+
+    You should write a Python function named `{}(x, y)`.
+    The Python code block should be wrapped in ```python```.
+    The code block should ONLY contain the function mentioned above.
+
+generation:
+  temperature: 0.1
+  pytorch_seed: 42
+  max_new_tokens: 512
+  num_attempts: 2
+
