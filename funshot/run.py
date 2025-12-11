@@ -32,6 +32,7 @@ def run(config_name: str):
         num_attempts = config['generation']['num_attempts']
 
         for i in range(num_attempts):
+            print(f"starting attempt {i}...")
             random.seed(config['random_seed'] + i)
 
             result = evaluate(
@@ -43,6 +44,7 @@ def run(config_name: str):
             )
 
             num_correct += result.is_correct()
+            print("\tattempt successful")
         
         accuracy = num_correct / num_attempts
         print(f"Accuracy: {accuracy * 100:.0f}% ({num_correct} / {num_attempts})")
